@@ -1,19 +1,16 @@
 package com.akvone.mobiletechnologies.controllers
 
 import com.akvone.mobiletechnologies.plain_objects.Measurement
+import com.akvone.mobiletechnologies.plain_objects.MeasurementRequestDTO
 import com.akvone.mobiletechnologies.services.MainService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1")
-class MainController {
-
-    @Autowired
-    lateinit var mainService: MainService
+class MainController(val mainService: MainService) {
 
     @PostMapping("/measurement")
-    fun createMeasurement(@RequestBody newMeasurement: Measurement) {
+    fun createMeasurement(@RequestBody newMeasurement: MeasurementRequestDTO) {
         mainService.createMeasurement(newMeasurement);
     }
 
@@ -25,7 +22,7 @@ class MainController {
     }
 
     @GetMapping("/measurement")
-    fun getMeasurement(@PathVariable id: Long): Measurement {
+    fun getMeasurement(@PathVariable id: String): Measurement {
         val measurement = mainService.getMeasurement(id)
 
         return measurement
