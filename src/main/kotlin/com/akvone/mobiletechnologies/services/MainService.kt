@@ -1,6 +1,6 @@
 package com.akvone.mobiletechnologies.services
 
-import com.akvone.mobiletechnologies.converters.convertToMeasurement
+import com.akvone.mobiletechnologies.converters.createMeasurement
 import com.akvone.mobiletechnologies.exceptions.NotFoundException
 import com.akvone.mobiletechnologies.plain_objects.Measurement
 import com.akvone.mobiletechnologies.plain_objects.MeasurementRequestDTO
@@ -12,7 +12,7 @@ import java.util.*
 class MainService(val measurementRepository: MeasurementRepository) {
 
     fun createMeasurement(requestDTO: MeasurementRequestDTO) {
-        val measurement = convertToMeasurement(UUID.randomUUID().toString(), requestDTO)
+        val measurement = createMeasurement(UUID.randomUUID().toString(), requestDTO)
         measurementRepository.save(measurement)
     }
 

@@ -11,20 +11,12 @@ class MainController(val mainService: MainService) {
 
     @PostMapping("/measurement")
     fun createMeasurement(@RequestBody newMeasurement: MeasurementRequestDTO) {
-        mainService.createMeasurement(newMeasurement);
+        mainService.createMeasurement(newMeasurement)
     }
 
     @GetMapping("/measurements")
-    fun getMeasurement(): List<Measurement> {
-        val measurements = mainService.getMeasurements()
-
-        return measurements
-    }
+    fun getMeasurement(): List<Measurement> = mainService.getMeasurements()
 
     @GetMapping("/measurement")
-    fun getMeasurement(@PathVariable id: String): Measurement {
-        val measurement = mainService.getMeasurement(id)
-
-        return measurement
-    }
+    fun getMeasurement(@PathVariable id: String): Measurement = mainService.getMeasurement(id)
 }
