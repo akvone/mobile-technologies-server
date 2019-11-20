@@ -15,7 +15,7 @@ class MainController(val mainService: MainService) {
     }
 
     @GetMapping("/measurements")
-    fun getMeasurement(): List<Measurement> = mainService.getMeasurements()
+    fun getMeasurements(): List<Measurement> = mainService.getMeasurements()
 
     @GetMapping("/measurement")
     fun getMeasurement(@PathVariable id: String): Measurement = mainService.getMeasurement(id)
