@@ -5,4 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface MeasurementRepository : MongoRepository<Measurement, String>
+interface MeasurementRepository : MongoRepository<Measurement, String> {
+    fun findByIdAndUserId(id: String, userId: String): Measurement?
+    fun findByUserId(userId: String): List<Measurement>
+}
