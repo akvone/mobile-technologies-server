@@ -1,7 +1,7 @@
-package com.akvone.mobiletechnologies.controllers
+package com.akvone.mobiletechnologies.controller
 
-import com.akvone.mobiletechnologies.plain_objects.Measurement
-import com.akvone.mobiletechnologies.services.MainService
+import com.akvone.mobiletechnologies.plain_object.Measurement
+import com.akvone.mobiletechnologies.service.MainService
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

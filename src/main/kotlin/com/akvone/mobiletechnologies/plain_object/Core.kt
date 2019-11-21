@@ -1,4 +1,4 @@
-package com.akvone.mobiletechnologies.plain_objects
+package com.akvone.mobiletechnologies.plain_object
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document

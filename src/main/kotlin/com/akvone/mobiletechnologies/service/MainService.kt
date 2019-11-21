@@ -1,10 +1,10 @@
-package com.akvone.mobiletechnologies.services
+package com.akvone.mobiletechnologies.service
 
-import com.akvone.mobiletechnologies.converters.createMeasurement
-import com.akvone.mobiletechnologies.exceptions.NotFoundException
-import com.akvone.mobiletechnologies.plain_objects.Measurement
-import com.akvone.mobiletechnologies.plain_objects.MeasurementRequestDTO
-import com.akvone.mobiletechnologies.repositories.MeasurementRepository
+import com.akvone.mobiletechnologies.converter.createMeasurement
+import com.akvone.mobiletechnologies.exception.NotFoundException
+import com.akvone.mobiletechnologies.plain_object.Measurement
+import com.akvone.mobiletechnologies.plain_object.MeasurementRequestDTO
+import com.akvone.mobiletechnologies.repositorie.MeasurementRepository
 import org.springframework.stereotype.Service
 import java.util.*
 

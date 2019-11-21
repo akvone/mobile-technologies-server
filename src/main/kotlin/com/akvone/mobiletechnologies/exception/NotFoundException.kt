@@ -1,3 +1,3 @@
-package com.akvone.mobiletechnologies.exceptions
+package com.akvone.mobiletechnologies.exception
 
 class NotFoundException : IllegalAccessException()

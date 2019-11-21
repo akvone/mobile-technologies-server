@@ -1,7 +1,7 @@
-package com.akvone.mobiletechnologies.converters
+package com.akvone.mobiletechnologies.converter
 
-import com.akvone.mobiletechnologies.plain_objects.Measurement
-import com.akvone.mobiletechnologies.plain_objects.MeasurementRequestDTO
+import com.akvone.mobiletechnologies.plain_object.Measurement
+import com.akvone.mobiletechnologies.plain_object.MeasurementRequestDTO
 import java.time.LocalDateTime
 
 fun createMeasurement(id: String, requestDTO: MeasurementRequestDTO): Measurement {
