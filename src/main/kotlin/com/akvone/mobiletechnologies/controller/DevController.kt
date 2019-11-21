@@ -1,10 +1,9 @@
 package com.akvone.mobiletechnologies.controller
 
 import com.akvone.mobiletechnologies.plain_object.Measurement
+import com.akvone.mobiletechnologies.plain_object.UserRequestDTO
 import com.akvone.mobiletechnologies.service.MainService
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("dev")
@@ -16,5 +15,10 @@ class DevController(val mainService: MainService) {
         mainService.deleteMeasurements()
 
         return measurements
+    }
+
+    @PostMapping("/register")
+    fun createUser(@RequestBody userRequestDTO: UserRequestDTO) {
+        mainService.createUser(userRequestDTO);
     }
 }
