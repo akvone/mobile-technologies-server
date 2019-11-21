@@ -38,8 +38,6 @@ class MainService(val measurementRepository: MeasurementRepository,
         return measurementRepository.findByUserId(userId)
     }
 
-    fun deleteMeasurements() = measurementRepository.deleteAll()
-
     fun createUser(userRequestDTO: UserRequestDTO): User {
         if (userRepository.findByUsername(userRequestDTO.username) != null) {
             throw UserAlreadyExistsException()

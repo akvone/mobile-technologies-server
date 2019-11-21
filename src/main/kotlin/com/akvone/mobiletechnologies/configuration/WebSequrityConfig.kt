@@ -20,6 +20,7 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/dev/**").permitAll()
+                .antMatchers("/api/v1/security/register").permitAll()
         // TODO: Configure logout also
         super.configure(http)
     }
