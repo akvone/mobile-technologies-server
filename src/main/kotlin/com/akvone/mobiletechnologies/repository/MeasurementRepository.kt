@@ -1,4 +1,4 @@
-package com.akvone.mobiletechnologies.repositorie
+package com.akvone.mobiletechnologies.repository
 
 import com.akvone.mobiletechnologies.plain_object.Measurement
 import org.springframework.data.mongodb.repository.MongoRepository

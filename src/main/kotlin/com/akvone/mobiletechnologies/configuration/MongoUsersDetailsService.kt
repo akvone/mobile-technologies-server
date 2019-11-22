@@ -1,6 +1,6 @@
 package com.akvone.mobiletechnologies.configuration
 
-import com.akvone.mobiletechnologies.repositorie.UserRepository
+import com.akvone.mobiletechnologies.repository.UserRepository
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
@@ -14,7 +14,7 @@ class MongoUserDetailsService(val userRepository: UserRepository) : UserDetailsS
         val user = userRepository.findByUsername(username!!) ?: throw UsernameNotFoundException("User not found")
         val authorities: List<SimpleGrantedAuthority> = listOf(SimpleGrantedAuthority("USER"))
 
-        return User(user.username, user.password, authorities);
+        return User(user.username, user.password, authorities)
     }
 
 }

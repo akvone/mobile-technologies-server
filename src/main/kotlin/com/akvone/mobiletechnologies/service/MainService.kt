@@ -6,8 +6,8 @@ import com.akvone.mobiletechnologies.plain_object.Measurement
 import com.akvone.mobiletechnologies.plain_object.MeasurementRequestDTO
 import com.akvone.mobiletechnologies.plain_object.User
 import com.akvone.mobiletechnologies.plain_object.UserRequestDTO
-import com.akvone.mobiletechnologies.repositorie.MeasurementRepository
-import com.akvone.mobiletechnologies.repositorie.UserRepository
+import com.akvone.mobiletechnologies.repository.MeasurementRepository
+import com.akvone.mobiletechnologies.repository.UserRepository
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.password.PasswordEncoder

@@ -1,6 +1,6 @@
 package com.akvone.mobiletechnologies.service
 
-import com.akvone.mobiletechnologies.repositorie.MeasurementRepository
+import com.akvone.mobiletechnologies.repository.MeasurementRepository
 import org.springframework.stereotype.Service
 
 @Service

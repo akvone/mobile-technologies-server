@@ -1,4 +1,4 @@
-package com.akvone.mobiletechnologies.repositorie
+package com.akvone.mobiletechnologies.repository
 
 import com.akvone.mobiletechnologies.plain_object.User
 import org.bson.types.ObjectId
