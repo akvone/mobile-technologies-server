@@ -2,10 +2,7 @@ package com.akvone.mobiletechnologies.service
 
 import com.akvone.mobiletechnologies.exception.EntityNotFoundException
 import com.akvone.mobiletechnologies.exception.UserAlreadyExistsException
-import com.akvone.mobiletechnologies.plain_object.Measurement
-import com.akvone.mobiletechnologies.plain_object.MeasurementRequestDTO
-import com.akvone.mobiletechnologies.plain_object.User
-import com.akvone.mobiletechnologies.plain_object.UserRequestDTO
+import com.akvone.mobiletechnologies.plain_object.*
 import com.akvone.mobiletechnologies.repository.MeasurementRepository
 import com.akvone.mobiletechnologies.repository.UserRepository
 import org.springframework.security.core.context.SecurityContextHolder
@@ -19,31 +16,33 @@ class MainService(val measurementRepository: MeasurementRepository,
                   val userRepository: UserRepository,
                   val passwordEncoder: PasswordEncoder) {
 
-    fun createMeasurement(requestDTO: MeasurementRequestDTO): Measurement {
+    fun createMeasurement(requestDTO: MeasurementRequestDTO) {
         val userId = getCurrentUserId()
         val convertToEntity = convertToEntity(requestDTO, userId)
 
-        return measurementRepository.save(convertToEntity)
+        measurementRepository.save(convertToEntity)
     }
 
-    fun getMeasurement(id: String): Measurement {
+    fun getMeasurement(id: String): MeasurementDTO {
         val userId = getCurrentUserId()
 
-        return measurementRepository.findByIdAndUserId(id, userId) ?: throw EntityNotFoundException()
+        val measurement = measurementRepository.findByIdAndUserId(id, userId) ?: throw EntityNotFoundException()
+        return convertToDto(measurement)
     }
 
-    fun getMeasurements(): List<Measurement> {
+    fun getMeasurements(): List<MeasurementDTO> {
         val userId = getCurrentUserId()
 
-        return measurementRepository.findByUserId(userId)
+        val measurements = measurementRepository.findByUserId(userId)
+        return measurements.map { convertToDto(it) }
     }
 
-    fun createUser(userRequestDTO: UserRequestDTO): User {
+    fun createUser(userRequestDTO: UserRequestDTO) {
         if (userRepository.findByUsername(userRequestDTO.username) != null) {
             throw UserAlreadyExistsException()
         }
 
-        return userRepository.save(convertToEntity(userRequestDTO))
+        userRepository.save(convertToEntity(userRequestDTO))
     }
 
     private fun getCurrentUserId(): String {
@@ -55,6 +54,10 @@ class MainService(val measurementRepository: MeasurementRepository,
             throw IllegalStateException()
         }
 
+    }
+
+    private fun convertToDto(measurement: Measurement): MeasurementDTO {
+        return with(measurement) { MeasurementDTO(id, createdAt, bpm, lower, upper) }
     }
 
     private fun convertToEntity(requestDTO: MeasurementRequestDTO, userId: String): Measurement {

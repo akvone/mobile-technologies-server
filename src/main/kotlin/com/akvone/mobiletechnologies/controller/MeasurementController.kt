@@ -1,6 +1,6 @@
 package com.akvone.mobiletechnologies.controller
 
-import com.akvone.mobiletechnologies.plain_object.Measurement
+import com.akvone.mobiletechnologies.plain_object.MeasurementDTO
 import com.akvone.mobiletechnologies.plain_object.MeasurementRequestDTO
 import com.akvone.mobiletechnologies.service.MainService
 import org.springframework.web.bind.annotation.*
@@ -15,8 +15,8 @@ class MeasurementController(val mainService: MainService) {
     }
 
     @GetMapping
-    fun getMeasurements(): List<Measurement> = mainService.getMeasurements()
+    fun getMeasurements(): List<MeasurementDTO> = mainService.getMeasurements()
 
     @GetMapping("/{id}")
-    fun getMeasurement(@PathVariable id: String): Measurement = mainService.getMeasurement(id)
+    fun getMeasurement(@PathVariable id: String): MeasurementDTO = mainService.getMeasurement(id)
 }
