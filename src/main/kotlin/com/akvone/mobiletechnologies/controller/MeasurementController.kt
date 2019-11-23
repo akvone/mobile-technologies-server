@@ -19,4 +19,7 @@ class MeasurementController(val mainService: MainService) {
 
     @GetMapping("/{id}")
     fun getMeasurement(@PathVariable id: String): MeasurementDTO = mainService.getMeasurement(id)
+
+    @GetMapping("/last")
+    fun getLastMeasurement(): MeasurementDTO = mainService.getLastMeasurement()
 }

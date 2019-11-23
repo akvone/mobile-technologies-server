@@ -30,6 +30,12 @@ class MainService(val measurementRepository: MeasurementRepository,
         return convertToDto(measurement)
     }
 
+    fun getLastMeasurement(): MeasurementDTO {
+        val measurement = measurementRepository.findFirstByUserIdOrderByCreatedAtDesc(getCurrentUserId())
+
+        return convertToDto(measurement)
+    }
+
     fun getMeasurements(): List<MeasurementDTO> {
         val userId = getCurrentUserId()
 
