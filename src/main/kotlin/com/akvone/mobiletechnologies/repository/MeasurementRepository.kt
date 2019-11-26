@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository
 interface MeasurementRepository : MongoRepository<Measurement, String> {
     fun findByIdAndUserId(id: String, userId: String): Measurement?
     fun findByUserId(userId: String): List<Measurement>
-    fun findFirstByUserIdOrderByCreatedAtDesc(userId: String): Measurement
+    fun findFirstByUserIdOrderByCreatedAtDesc(userId: String): Measurement?
 }

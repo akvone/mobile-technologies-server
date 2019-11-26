@@ -33,7 +33,7 @@ class MainService(val measurementRepository: MeasurementRepository,
     fun getLastMeasurement(): MeasurementDTO {
         val measurement = measurementRepository.findFirstByUserIdOrderByCreatedAtDesc(getCurrentUserId())
 
-        return convertToDto(measurement)
+        return measurement?.let { convertToDto(measurement) } ?: throw EntityNotFoundException()
     }
 
     fun getMeasurements(): List<MeasurementDTO> {
