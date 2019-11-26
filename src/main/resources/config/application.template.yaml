@@ -1,0 +1,5 @@
+# Rename this file to 'application.yaml' to have a development-ready application
+
+spring:
+  profiles:
+    active: dev
