@@ -52,13 +52,14 @@ class MainService(val measurementRepository: MeasurementRepository,
 
         val user = userRepository.save(convertToEntity(userRequestDTO))
         val userId = userRepository.findByUsername(user.username)!!.id // TODO refactor
-        profileRepository.save(Profile("", userId, user.username, null, null))
+        profileRepository.save(Profile("", userId, user.username, null, null, null))
     }
 
     fun updateProfile(profileDTO: ProfileDTO) { // TODO refactor
         val profile = profileRepository.findByUserId(getCurrentUserId())
 
         profile.name = profileDTO.name
+        profile.age = profileDTO.age
         profile.height = profileDTO.height
         profile.weight = profileDTO.weight
 
@@ -95,7 +96,7 @@ class MainService(val measurementRepository: MeasurementRepository,
     }
 
     private fun convertToDto(profile: Profile): ProfileDTO {
-        return ProfileDTO(profile.name, profile.height, profile.weight)
+        return ProfileDTO(profile.name, profile.age, profile.height, profile.weight)
     }
 
 }

@@ -27,15 +27,17 @@ internal class MainServiceTest {
         val defaultName = mainService.getProfile().name
         assertThat(defaultName).isEqualTo("test")
 
-        val expectedHeight = 123
         val expectedName = "meaningful name"
+        val expectedAge = 81
+        val expectedHeight = 123
         val expectedWeight = 987.0
 
-        val profileDTO = ProfileDTO(expectedName, expectedHeight, expectedWeight)
+        val profileDTO = ProfileDTO(expectedName, expectedAge, expectedHeight, expectedWeight)
         mainService.updateProfile(profileDTO)
-        val (name, height, weight) = mainService.getProfile()
+        val (name, age, height, weight) = mainService.getProfile()
 
         assertThat(name).isEqualTo(expectedName)
+        assertThat(age).isEqualTo(expectedAge)
         assertThat(height).isEqualTo(expectedHeight)
         assertThat(weight).isEqualTo(expectedWeight)
     }

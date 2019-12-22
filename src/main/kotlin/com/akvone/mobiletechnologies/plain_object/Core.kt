@@ -12,4 +12,5 @@ data class Measurement(@Id val id: String, val userId: String, val createdAt: Lo
                        val bpm: Int, val lower: Int, val upper: Int)
 
 @Document
-data class Profile(@Id val id: String, val userId: String, var name: String, var height: Int?, var weight: Double?)
+data class Profile(@Id val id: String, val userId: String,
+                   var name: String, var age: Int?, var height: Int?, var weight: Double?)

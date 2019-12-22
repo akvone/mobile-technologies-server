@@ -8,4 +8,4 @@ data class MeasurementDTO(val id: String, val createdAt: LocalDateTime,
 
 data class UserRequestDTO(var username: String, val password: String)
 
-data class ProfileDTO(val name: String, val height: Int?, val weight: Double?)
+data class ProfileDTO(val name: String, val age: Int?, val height: Int?, val weight: Double?)
