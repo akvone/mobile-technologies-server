@@ -1,4 +1,4 @@
-package com.akvone.mobiletechnologies
+package com.akvone.mobiletechnologies.dev
 
 import de.flapdoodle.embed.mongo.MongodStarter
 import de.flapdoodle.embed.mongo.config.MongodConfigBuilder

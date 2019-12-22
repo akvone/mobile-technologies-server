@@ -6,4 +6,6 @@ data class MeasurementRequestDTO(val bpm: Int, val lower: Int, val upper: Int)
 data class MeasurementDTO(val id: String, val createdAt: LocalDateTime,
                           val bpm: Int, val lower: Int, val upper: Int)
 
-data class UserRequestDTO(val username: String, val password: String)
+data class UserRequestDTO(var username: String, val password: String)
+
+data class ProfileDTO(val name: String, val height: Int?, val weight: Double?)
