@@ -19,30 +19,28 @@ class MainService(val measurementRepository: MeasurementRepository,
                   val passwordEncoder: PasswordEncoder) {
 
     fun createMeasurement(requestDTO: MeasurementRequestDTO) {
-        val userId = getCurrentUserId()
-        val convertToEntity = convertToEntity(requestDTO, userId)
+        val measurement = buildMeasurement(requestDTO, getCurrentUserId())
 
-        measurementRepository.save(convertToEntity)
+        measurementRepository.save(measurement)
     }
 
     fun getMeasurement(id: String): MeasurementDTO {
-        val userId = getCurrentUserId()
+        val measurement = measurementRepository.findByIdAndUserId(id, getCurrentUserId())
 
-        val measurement = measurementRepository.findByIdAndUserId(id, userId) ?: throw EntityNotFoundException()
-        return convertToDto(measurement)
+        return measurement?.convertToDto() ?: throw EntityNotFoundException()
     }
 
     fun getLastMeasurement(): MeasurementDTO {
         val measurement = measurementRepository.findFirstByUserIdOrderByCreatedAtDesc(getCurrentUserId())
 
-        return measurement?.let { convertToDto(measurement) } ?: throw EntityNotFoundException()
+        return measurement?.convertToDto() ?: throw EntityNotFoundException()
     }
 
     fun getMeasurements(): List<MeasurementDTO> {
         val userId = getCurrentUserId()
 
         val measurements = measurementRepository.findByUserId(userId)
-        return measurements.map { convertToDto(it) }
+        return measurements.map { it.convertToDto() }
     }
 
     fun createUser(userRequestDTO: UserRequestDTO) {
@@ -50,25 +48,30 @@ class MainService(val measurementRepository: MeasurementRepository,
             throw UserAlreadyExistsException()
         }
 
-        val user = userRepository.save(convertToEntity(userRequestDTO))
-        val userId = userRepository.findByUsername(user.username)!!.id // TODO refactor
-        profileRepository.save(Profile("", userId, user.username, null, null, null))
+        val user = userRepository.insert(buildUser(userRequestDTO))
+        // TODO:Find a way to get user id right after insertion
+        //      Now MongoTemplate#populateIdIfNecessary won't work because it updates only null values.
+        val userId = userRepository.findByUsername(user.username)!!.id
+
+        profileRepository.save(buildProfile(userId, user))
     }
 
-    fun updateProfile(profileDTO: ProfileDTO) { // TODO refactor
+    fun updateProfile(profileDTO: ProfileDTO) {
         val profile = profileRepository.findByUserId(getCurrentUserId())
 
-        profile.name = profileDTO.name
-        profile.age = profileDTO.age
-        profile.height = profileDTO.height
-        profile.weight = profileDTO.weight
+        with(profileDTO) {
+            profile.name = name
+            profile.age = age
+            profile.height = height
+            profile.weight = weight
+        }
 
         profileRepository.save(profile)
     }
 
     fun getProfile(): ProfileDTO {
         val profile = profileRepository.findByUserId(getCurrentUserId())
-        return convertToDto(profile)
+        return profile.convertToDto()
     }
 
     private fun getCurrentUserId(): String {
@@ -82,21 +85,12 @@ class MainService(val measurementRepository: MeasurementRepository,
 
     }
 
-    // TODO: Move converters
-    private fun convertToDto(measurement: Measurement): MeasurementDTO {
-        return with(measurement) { MeasurementDTO(id, createdAt, bpm, lower, upper) }
-    }
+    private fun buildMeasurement(requestDTO: MeasurementRequestDTO, userId: String): Measurement =
+            with(requestDTO) { Measurement("", userId, LocalDateTime.now(), bpm, lower, upper) }
 
-    private fun convertToEntity(requestDTO: MeasurementRequestDTO, userId: String): Measurement {
-        return Measurement("", userId, LocalDateTime.now(), requestDTO.bpm, requestDTO.lower, requestDTO.upper)
-    }
+    private fun buildUser(requestDTO: UserRequestDTO) =
+            User("", requestDTO.username, passwordEncoder.encode(requestDTO.password))
 
-    private fun convertToEntity(requestDTO: UserRequestDTO): User {
-        return User("", requestDTO.username, passwordEncoder.encode(requestDTO.password))
-    }
-
-    private fun convertToDto(profile: Profile): ProfileDTO {
-        return ProfileDTO(profile.name, profile.age, profile.height, profile.weight)
-    }
+    private fun buildProfile(userId: String, user: User) = Profile("", userId, user.username)
 
 }

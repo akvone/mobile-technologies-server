@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service
 @Service
 class MongoUserDetailsService(val userRepository: UserRepository) : UserDetailsService {
     override fun loadUserByUsername(username: String?): UserDetails {
+        // 'username' MUST be not null, so placing the '!!' is justified, I guess
         val user = userRepository.findByUsername(username!!) ?: throw UsernameNotFoundException("User not found")
         val authorities: List<SimpleGrantedAuthority> = listOf(SimpleGrantedAuthority("USER"))
 

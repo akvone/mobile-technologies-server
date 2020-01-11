@@ -13,4 +13,4 @@ data class Measurement(@Id val id: String, val userId: String, val createdAt: Lo
 
 @Document
 data class Profile(@Id val id: String, val userId: String,
-                   var name: String, var age: Int?, var height: Int?, var weight: Double?)
+                   var name: String, var age: Int? = null, var height: Int? = null, var weight: Double? = null)

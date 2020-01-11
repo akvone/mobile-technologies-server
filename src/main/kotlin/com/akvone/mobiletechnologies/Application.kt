@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class MobileTechnologiesServerApplication
 
 fun main(args: Array<String>) {
-	runApplication<MobileTechnologiesServerApplication>(*args)
+    runApplication<MobileTechnologiesServerApplication>(*args)
 }
