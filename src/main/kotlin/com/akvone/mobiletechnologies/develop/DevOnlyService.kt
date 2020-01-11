@@ -1,4 +1,4 @@
-package com.akvone.mobiletechnologies.service
+package com.akvone.mobiletechnologies.develop
 
 import com.akvone.mobiletechnologies.repository.MeasurementRepository
 import org.springframework.context.annotation.Profile

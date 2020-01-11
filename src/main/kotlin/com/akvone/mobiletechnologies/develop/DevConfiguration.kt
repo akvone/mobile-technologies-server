@@ -1,4 +1,4 @@
-package com.akvone.mobiletechnologies.configuration
+package com.akvone.mobiletechnologies.develop
 
 import com.akvone.mobiletechnologies.controller.AuthController
 import com.akvone.mobiletechnologies.exception.UserAlreadyExistsException
