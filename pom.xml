@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.akvone</groupId>
 	<artifactId>mobile-technologies-server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>mobile-technologies-server</name>
 	<description>Demo project for Spring Boot</description>
 
