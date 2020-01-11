@@ -1,4 +1,4 @@
-package com.akvone.mobiletechnologies.configurations
+package com.akvone.mobiletechnologies.configuration
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
